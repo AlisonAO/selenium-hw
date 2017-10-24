@@ -76,13 +76,13 @@ describe 'qaform' do
 
   it 'should select the text of an uploaded documents' do
     @driver.find_element(id: 'photo').send_keys("/Users/tech-a59/Documents/test.txt")
-    upload = @driver.find_element(id: 'photo').text
-    expect(upload).to eql('text.txt')
+    upload = @driver.find_element(name: 'photo').text
+    expect(upload).to eql('test.txt')
   end
 
   it 'should click the url link' do
     @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
-    # expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').selected?).to eq(true)
+    expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').selected?).to eq(true)
 
     @driver.find_element(:link_text, 'Test File to Download').click
     # expect(@driver.find_element(:link_text, 'Test File to Download').click?).to eq(true)
