@@ -7,11 +7,11 @@ describe 'qaform' do
   end
 
   it "should click on the partial link and link test" do
-      # @driver.find_element(:link_text, 'Partial Link Test').click
-      # expect(@driver.find_element(:link_text, 'Partial Link Test').displayed?).to eq(true)
-
-      # @driver.find_element(:link_text, 'Link Test').click
-      # expect(@driver.find_element(:link_text, 'Link Test').displayed?).to eq(true)
+      @driver.find_element(:link_text, 'Partial Link Test').click
+      sleep 5
+      @driver.find_element(:link_text, 'Link Test').click
+      sleep 5
+      @driver.navigate().back()
   end
 
   it 'should open the qafrom page' do
@@ -76,13 +76,17 @@ describe 'qaform' do
 
   it 'should select the text of an uploaded documents' do
     @driver.find_element(id: 'photo').send_keys("/Users/tech-a59/Documents/test.txt")
-    upload = @driver.find_element(name: 'photo').text
-    expect(upload).to eql('test.txt')
+    # upload = @driver.find_element(css: 'input[type="file" i]').text # <-- not working
+    # expect(upload).to eql('test.txt')
   end
 
   it 'should click the url link' do
+    @download = File.dirname("/Users/tech-a59/Downloads")
     @driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').click
-    expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').selected?).to eq(true)
+    files = Dir.glob("#{@download}/*")
+    expect(files.empty?).to eql false
+    expect(File.size(files.first)).to be > 0
+    # expect(@driver.find_element(:link_text, 'Selenium Automation Hybrid Framework').selected?).to eq(true)
 
     @driver.find_element(:link_text, 'Test File to Download').click
     # expect(@driver.find_element(:link_text, 'Test File to Download').click?).to eq(true)

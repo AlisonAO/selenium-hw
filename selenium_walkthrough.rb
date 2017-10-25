@@ -32,6 +32,7 @@ p @driver.find_element(:name, 'firstname').displayed?
 
 # @driver.find_element(:link_text, 'Partial Link Test').click
 
-@driver.find_element(id: "photo").send_keys("/Users/tech-a59/Documents/test.txt")
+# @driver.find_element(id: "photo").send_keys("/Users/tech-a59/Documents/test.txt")
+@driver.find_element(:link_text, 'Partial Link Test').click
 
 sleep 5
